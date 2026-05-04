@@ -143,9 +143,10 @@ h1,h2,h3,h4,h5,h6{color:var(--dark);line-height:1.15;font-weight:800;font-family
 /* Countries */
 .countries{padding:120px 0;background:var(--gray-100)}
 .country-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:48px;flex-wrap:wrap}
-.country-tab{padding:12px 24px;border-radius:var(--radius-pill);border:2px solid var(--gray-300);background:var(--white);font-family:var(--font-body);font-size:.9rem;font-weight:600;color:var(--gray-600);cursor:pointer;transition:all var(--fast)}
+.country-tab{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius-pill);border:2px solid var(--gray-300);background:var(--white);font-family:var(--font-body);font-size:.9rem;font-weight:600;color:var(--gray-600);cursor:pointer;transition:all var(--fast)}
 .country-tab:hover{border-color:var(--primary);color:var(--dark)}
 .country-tab.active{background:linear-gradient(135deg,var(--primary),#F59E0B);border-color:transparent;color:var(--dark);box-shadow:0 4px 20px rgba(229,164,10,.3)}
+.country-tab-flag{width:20px;height:15px;object-fit:cover;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .country-content{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-300);overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.06)}
 .country-hero{position:relative;height:300px;overflow:hidden}
 .country-hero img{width:100%;height:100%;object-fit:cover}
