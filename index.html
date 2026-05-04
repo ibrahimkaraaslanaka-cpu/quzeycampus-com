@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quzeycampus — Uluslararası Eğitim Danışmanlığı</title>
+  <meta name="description" content="Quzeycampus, İngiltere merkezli Quzey LTD ve Türkiye'de faaliyet gösteren CS Global iş birliği ile kurulmuş uluslararası eğitim danışmanlık markasıdır.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#" class="nav-logo"><img src="logo.png" alt="Quzeycampus" class="nav-logo-img"></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">Hakkımızda</a>
+      <a href="#apply">Başvuru</a>
+      <a href="#countries">Programlar</a>
+      <a href="#contact">İletişim</a>
+    </div>
+    <a href="#apply" class="nav-cta">Ücretsiz Başvuru</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-gradient"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-grid-pattern"></div>
+  </div>
+  <div class="container hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">🌍 Uluslararası Eğitim Danışmanlığı</div>
+      <h1 class="hero-title">Hayalindeki<br>Eğitimi <span class="gradient-text">Keşfet</span></h1>
+      <p class="hero-description">Türkiye'den dünyanın en prestijli eğitim fırsatlarına kolay, güvenli ve doğru şekilde ulaşmanızı sağlıyoruz.</p>
+      <div class="hero-actions">
+        <a href="#apply" class="btn btn-glow">Ücretsiz Başvuru Yap</a>
+        <a href="#countries" class="btn btn-ghost">Programları Keşfet →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-number">5<span class="accent">+</span></span><span class="hero-stat-label">Ülke</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-number">100<span class="accent">+</span></span><span class="hero-stat-label">Partner</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-number">1000<span class="accent">+</span></span><span class="hero-stat-label">Öğrenci</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-card">
+        <img src="assets/hero.png" alt="Uluslararası öğrenciler" class="hero-image">
+        <div class="hero-image-glow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM — PROMINENT -->
+<section class="apply-section" id="apply">
+  <div class="apply-bg">
+    <div class="apply-orb apply-orb-1"></div>
+    <div class="apply-orb apply-orb-2"></div>
+  </div>
+  <div class="container">
+    <div class="apply-wrapper">
+      <div class="apply-info">
+        <div class="apply-badge">✨ %100 Ücretsiz</div>
+        <h2 class="apply-title">Ücretsiz Başvuru <span class="gradient-text">Formu</span></h2>
+        <p class="apply-desc">Bilgilerinizi bırakın, uzman danışmanlarımız size en kısa sürede dönüş yapsın. Hayalinizdeki eğitim yolculuğuna birlikte başlayalım.</p>
+        <div class="apply-features">
+          <div class="apply-feature"><div class="apply-feature-icon">🎯</div><div><strong>Kişiye Özel Plan</strong><p>Her öğrenciye özel danışmanlık</p></div></div>
+          <div class="apply-feature"><div class="apply-feature-icon">📋</div><div><strong>Vize & Başvuru Desteği</strong><p>Tüm süreçlerde yanınızdayız</p></div></div>
+          <div class="apply-feature"><div class="apply-feature-icon">🏆</div><div><strong>Burs İmkanları</strong><p>İndirimli ve burslu programlar</p></div></div>
+        </div>
+      </div>
+      <div class="apply-form-card">
+        <form id="consultForm">
+          <div class="form-row">
+            <div class="form-group"><label>Adı Soyadı <span class="req">*</span></label><input type="text" id="fullName" required placeholder="Adınız Soyadınız"></div>
+            <div class="form-group"><label>Telefon <span class="req">*</span></label><input type="tel" id="phone" required placeholder="+90 5XX XXX XX XX"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>E-posta <span class="req">*</span></label><input type="email" id="email" required placeholder="ornek@mail.com"></div>
+            <div class="form-group"><label>Şehir <span class="req">*</span></label><input type="text" id="city" required placeholder="İstanbul"></div>
+          </div>
+          <div class="form-group">
+            <label>Planlanan Eğitim <span class="optional-tag">Opsiyonel — birden fazla seçilebilir</span></label>
+            <div class="chip-group">
+              <label class="chip"><input type="checkbox" name="education" value="dil-okulu"><span>Dil Okulu</span></label>
+              <label class="chip"><input type="checkbox" name="education" value="yaz-okulu"><span>Yaz Okulu</span></label>
+              <label class="chip"><input type="checkbox" name="education" value="dil-sertifika"><span>Dil Sertifika Programları</span></label>
+              <label class="chip"><input type="checkbox" name="education" value="universite"><span>Üniversite (Lisans, Y.Lisans, Doktora)</span></label>
+              <label class="chip"><input type="checkbox" name="education" value="kulturel-degisim"><span>Kültürel Değişim & Kariyer</span></label>
+              <label class="chip"><input type="checkbox" name="education" value="mesleki-gelisim"><span>Sertifikalı Mesleki Gelişim</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Planlanan Ülke</label>
+            <div class="country-select-grid">
+              <label class="country-chip"><input type="checkbox" name="country" value="ingiltere"><span class="country-chip-inner"><img class="country-flag-img" src="https://flagcdn.com/w40/gb.png" alt="🇬🇧"><span class="country-name">İngiltere</span></span></label>
+              <label class="country-chip"><input type="checkbox" name="country" value="irlanda"><span class="country-chip-inner"><img class="country-flag-img" src="https://flagcdn.com/w40/ie.png" alt="🇮🇪"><span class="country-name">İrlanda</span></span></label>
+              <label class="country-chip"><input type="checkbox" name="country" value="italya"><span class="country-chip-inner"><img class="country-flag-img" src="https://flagcdn.com/w40/it.png" alt="🇮🇹"><span class="country-name">İtalya</span></span></label>
+              <label class="country-chip"><input type="checkbox" name="country" value="cin"><span class="country-chip-inner"><img class="country-flag-img" src="https://flagcdn.com/w40/cn.png" alt="🇨🇳"><span class="country-name">Çin</span></span></label>
+              <label class="country-chip"><input type="checkbox" name="country" value="guney-kore"><span class="country-chip-inner"><img class="country-flag-img" src="https://flagcdn.com/w40/kr.png" alt="🇰🇷"><span class="country-name">G. Kore</span></span></label>
+              <label class="country-chip country-chip-other"><input type="checkbox" name="country" value="diger"><span class="country-chip-inner"><span class="country-flag-globe">🌍</span><span class="country-name">Diğer</span></span></label>
+            </div>
+            <div class="country-other-row" id="countryOtherRow" style="display:none;margin-top:10px">
+              <input type="text" class="form-other-input" id="otherCountry" placeholder="Ülke adını yazın...">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-glow btn-full">Başvuru Gönder</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+
+      <h2 class="section-title">Quzeycampus <span class="gradient-text">Kimdir?</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-main reveal">
+        <p class="about-lead">Quzeycampus, İngiltere merkezli Quzey LTD ve Türkiye'de faaliyet gösteren CS Global iş birliği ile kurulmuş uluslararası eğitim danışmanlık markasıdır.</p>
+        <p>Amacımız, Türkiye'den öğrencilerin dünyanın en prestijli eğitim fırsatlarına kolay, güvenli ve doğru şekilde ulaşmasını sağlamak ve onları yalnızca akademik olarak değil, aynı zamanda kişisel ve kültürel anlamda da geliştirmektir.</p>
+        <p>Çin, Güney Kore, İngiltere, İrlanda ve İtalya başta olmak üzere; dil okulları, yaz okulları, üniversite programları, üniversiteye hazırlık ve uluslararası sertifika eğitimleri ile her öğrencinin hedeflerine uygun en doğru yolu birlikte planlıyoruz.</p>
+        <p>Başvuru sürecinden vize işlemlerine, konaklama organizasyonundan yurt dışındaki yaşam adaptasyonuna kadar tüm aşamalarda profesyonel destek sağlıyoruz.</p>
+      </div>
+      <div class="about-cards reveal">
+        <div class="about-card">
+          <div class="about-card-icon">🛡️</div>
+          <h3>Güvenilir Rehberlik</h3>
+          <p>İngiltere tescilli danışmanlık firması ve doğrulanmış kurumsal ortaklıklar.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">👤</div>
+          <h3>Kişiye Özel Yaklaşım</h3>
+          <p>Her öğrenci bireysel ilgi ve özelleştirilmiş akademik planlama alır.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🌐</div>
+          <h3>Global Ağ</h3>
+          <p>Avrupa ve Asya'daki en iyi üniversiteler ve kurumlarla güçlü ortaklıklar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<section class="countries" id="countries">
+  <div class="container">
+    <div class="section-header reveal">
+
+      <h2 class="section-title">Eğitim <span class="gradient-text">Destinasyonları</span></h2>
+      <p class="section-sub">Hayalinizdeki ülkeyi seçin, size en uygun programı birlikte planlayalım</p>
+    </div>
+    <div class="country-tabs reveal">
+      <button class="country-tab active" data-country="uk">🇬🇧 İngiltere</button>
+      <button class="country-tab" data-country="ireland">🇮🇪 İrlanda</button>
+      <button class="country-tab" data-country="italy">🇮🇹 İtalya</button>
+      <button class="country-tab" data-country="china">🇨🇳 Çin</button>
+      <button class="country-tab" data-country="korea">🇰🇷 Güney Kore</button>
+    </div>
+    <div class="country-content reveal" id="countryContent"></div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner reveal">
+  <div class="cta-bg"><div class="cta-orb cta-orb-1"></div><div class="cta-orb cta-orb-2"></div></div>
+  <div class="container cta-content">
+    <h2>Yolculuğunuza Başlamaya <span class="gradient-text-light">Hazır Mısınız?</span></h2>
+    <p>Ücretsiz başvuru yapın ve hayalinizdeki eğitime ilk adımı atın.</p>
+    <a href="#apply" class="btn btn-white">Ücretsiz Başvuru Yap</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+
+      <h2 class="section-title">Bize <span class="gradient-text">Ulaşın</span></h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="contact-card"><div class="contact-card-icon">✉️</div><div><h3>E-posta</h3><p><a href="mailto:info@quzeycampus.com">info@quzeycampus.com</a></p></div></div>
+        <div class="contact-card"><div class="contact-card-icon">📱</div><div><h3>Telefon / WhatsApp</h3><p><a href="https://wa.me/905333493430">+90 533 349 34 30</a></p></div></div>
+        <div class="contact-card"><div class="contact-card-icon">📍</div><div><h3>Adres</h3><p>Kolektif House Levent, Esentepe Mah. Talatpaşa Cad. No:5/2 Şişli - Türkiye</p></div></div>
+      </div>
+      <div class="contact-form-card">
+        <h3>Hızlı İletişim</h3>
+        <form id="contactForm">
+          <div class="form-row"><div class="form-group"><label>Adınız</label><input type="text" placeholder="Adınız" required></div><div class="form-group"><label>E-posta</label><input type="email" placeholder="E-posta" required></div></div>
+          <div class="form-group"><label>Mesajınız</label><textarea placeholder="Mesajınızı yazın..." rows="4"></textarea></div>
+          <button type="submit" class="btn btn-glow btn-full">Gönder</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="#" class="nav-logo footer-logo"><img src="logo.png" alt="Quzeycampus" class="footer-logo-img"></a><p>Öğrencileri akademik mükemmelliğe ve global fırsatlara yönlendiriyoruz.</p></div>
+      <div class="footer-links"><h4>Hızlı Linkler</h4><ul><li><a href="#about">Hakkımızda</a></li><li><a href="#apply">Başvuru</a></li><li><a href="#countries">Programlar</a></li><li><a href="#contact">İletişim</a></li></ul></div>
+      <div class="footer-links"><h4>Ülkeler</h4><ul><li><a href="#" onclick="selectCountry('uk')">İngiltere</a></li><li><a href="#" onclick="selectCountry('ireland')">İrlanda</a></li><li><a href="#" onclick="selectCountry('italy')">İtalya</a></li><li><a href="#" onclick="selectCountry('china')">Çin</a></li><li><a href="#" onclick="selectCountry('korea')">Güney Kore</a></li></ul></div>
+      <div class="footer-links"><h4>İletişim</h4><ul><li><a href="mailto:info@quzeycampus.com">info@quzeycampus.com</a></li><li><a href="https://wa.me/905333493430">+90 533 349 34 30</a></li><li>Şişli, İstanbul</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Quzeycampus. Tüm hakları saklıdır.</span><span>Quzey LTD — İngiltere & Galler Tescilli</span></div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Başvurunuz başarıyla alındı!</span></div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/905333493430" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
