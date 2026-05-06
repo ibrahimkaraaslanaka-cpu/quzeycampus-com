@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Quzeycampus Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+    .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+    .login-box{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:40px;width:100%;max-width:400px;box-shadow:0 25px 50px rgba(0,0,0,.4)}
+    .login-box h1{font-size:24px;margin-bottom:8px;color:#f8fafc}
+    .login-box p{color:#94a3b8;margin-bottom:24px;font-size:14px}
+    .login-box img{width:120px;margin-bottom:20px}
+    .field{margin-bottom:16px}
+    .field label{display:block;font-size:13px;color:#94a3b8;margin-bottom:6px}
+    .field input{width:100%;padding:12px 16px;background:#0f172a;border:1px solid #334155;border-radius:10px;color:#f8fafc;font-size:15px;outline:none;transition:border .2s}
+    .field input:focus{border-color:#3b82f6}
+    .btn{width:100%;padding:14px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .error-msg{color:#ef4444;font-size:13px;margin-top:8px;display:none}
+
+    /* Dashboard */
+    .dashboard{display:none;padding:24px;max-width:1200px;margin:0 auto}
+    .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .dash-header h1{font-size:22px;color:#f8fafc}
+    .dash-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn-sm{padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+    .btn-export{background:#10b981;color:#fff}
+    .btn-export:hover{background:#059669}
+    .btn-refresh{background:#334155;color:#e2e8f0}
+    .btn-refresh:hover{background:#475569}
+    .btn-logout{background:#ef4444;color:#fff}
+    .btn-logout:hover{background:#dc2626}
+
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+    .stat-card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px}
+    .stat-card .label{font-size:13px;color:#94a3b8;margin-bottom:4px}
+    .stat-card .value{font-size:28px;font-weight:700;color:#f8fafc}
+
+    .table-wrap{background:#1e293b;border:1px solid #334155;border-radius:12px;overflow:hidden}
+    .table-scroll{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;min-width:800px}
+    th{background:#0f172a;padding:14px 16px;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;font-weight:600;position:sticky;top:0}
+    td{padding:12px 16px;border-top:1px solid #1e293b;font-size:14px;color:#cbd5e1;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    tr:hover td{background:#1e293b}
+    .badge{display:inline-block;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600}
+    .badge-consult{background:#3b82f620;color:#60a5fa}
+    .badge-contact{background:#10b98120;color:#34d399}
+    .delete-btn{background:none;border:none;color:#ef4444;cursor:pointer;font-size:16px;padding:4px 8px;border-radius:6px;transition:background .15s}
+    .delete-btn:hover{background:#ef444420}
+    .empty{text-align:center;padding:60px 20px;color:#64748b}
+    .loading{text-align:center;padding:40px;color:#64748b}
+  </style>
+</head>
+<body>
+  <!-- Login -->
+  <div class="login-wrap" id="loginView">
+    <div class="login-box">
+      <img src="logo.png" alt="Quzeycampus">
+      <h1>Admin Panel</h1>
+      <p>Başvuru yönetim paneline giriş yapın</p>
+      <div class="field">
+        <label>Kullanıcı Adı</label>
+        <input type="text" id="username" autocomplete="username">
+      </div>
+      <div class="field">
+        <label>Şifre</label>
+        <input type="password" id="password" autocomplete="current-password">
+      </div>
+      <div class="error-msg" id="loginError">Kullanıcı adı veya şifre hatalı</div>
+      <button class="btn" id="loginBtn" onclick="login()">Giriş Yap</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashView">
+    <div class="dash-header">
+      <h1>📋 Başvuru Yönetimi</h1>
+      <div class="dash-actions">
+        <button class="btn-sm btn-refresh" onclick="loadData()">↻ Yenile</button>
+        <button class="btn-sm btn-export" onclick="exportCSV()">⬇ Excel İndir</button>
+        <button class="btn-sm btn-logout" onclick="logout()">Çıkış</button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat-card"><div class="label">Toplam Başvuru</div><div class="value" id="totalCount">0</div></div>
+      <div class="stat-card"><div class="label">Danışmanlık Talepleri</div><div class="value" id="consultCount">0</div></div>
+      <div class="stat-card"><div class="label">İletişim Mesajları</div><div class="value" id="contactCount">0</div></div>
+      <div class="stat-card"><div class="label">Bu Hafta</div><div class="value" id="weekCount">0</div></div>
+    </div>
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Tür</th><th>Ad Soyad</th><th>Telefon</th><th>E-posta</th><th>Şehir</th><th>Eğitim/Ülke</th><th>Mesaj</th><th>Tarih</th><th></th></tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="9" class="loading">Yükleniyor...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let authHeader = '';
+
+    function login() {
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      authHeader = 'Basic ' + btoa(u + ':' + p);
+      fetch('/api/submissions', { headers: { Authorization: authHeader } })
+        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        .then(data => {
+          document.getElementById('loginView').style.display = 'none';
+          document.getElementById('dashView').style.display = 'block';
+          sessionStorage.setItem('qz_auth', authHeader);
+          renderData(data);
+        })
+        .catch(() => {
+          document.getElementById('loginError').style.display = 'block';
+        });
+    }
+
+    document.getElementById('password').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+
+    function logout() {
+      sessionStorage.removeItem('qz_auth');
+      authHeader = '';
+      document.getElementById('loginView').style.display = 'flex';
+      document.getElementById('dashView').style.display = 'none';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    function loadData() {
+      fetch('/api/submissions', { headers: { Authorization: authHeader } })
+        .then(r => r.json())
+        .then(renderData)
+        .catch(() => alert('Veri yüklenemedi'));
+    }
+
+    function renderData(data) {
+      const tbody = document.getElementById('tableBody');
+      document.getElementById('totalCount').textContent = data.length;
+      document.getElementById('consultCount').textContent = data.filter(d => d.form_type === 'consult').length;
+      document.getElementById('contactCount').textContent = data.filter(d => d.form_type === 'contact').length;
+      const weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
+      document.getElementById('weekCount').textContent = data.filter(d => new Date(d.created_at) > weekAgo).length;
+
+      if (!data.length) { tbody.innerHTML = '<tr><td colspan="9" class="empty">Henüz başvuru yok</td></tr>'; return; }
+      tbody.innerHTML = data.map(r => {
+        const type = r.form_type === 'consult' ? '<span class="badge badge-consult">Danışmanlık</span>' : '<span class="badge badge-contact">İletişim</span>';
+        const date = new Date(r.created_at).toLocaleDateString('tr-TR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+        const info = r.form_type === 'consult' ? `${r.education || ''} / ${r.country || ''}` : '-';
+        return `<tr>
+          <td>${type}</td><td title="${r.name||''}">${r.name||''}</td><td>${r.phone||''}</td>
+          <td>${r.email||''}</td><td>${r.city||''}</td><td title="${info}">${info}</td>
+          <td title="${r.message||''}">${r.message||'-'}</td><td>${date}</td>
+          <td><button class="delete-btn" onclick="deleteRow(${r.id})">🗑</button></td></tr>`;
+      }).join('');
+    }
+
+    function deleteRow(id) {
+      if (!confirm('Bu başvuruyu silmek istediğinize emin misiniz?')) return;
+      fetch('/api/submissions?id=' + id, { method: 'DELETE', headers: { Authorization: authHeader } })
+        .then(r => r.json())
+        .then(() => loadData());
+    }
+
+    function exportCSV() {
+      const a = document.createElement('a');
+      a.href = '/api/export';
+      const [_, cred] = authHeader.split(' ');
+      a.href = '/api/export?auth=' + encodeURIComponent(cred);
+      // Use fetch with auth header instead
+      fetch('/api/export', { headers: { Authorization: authHeader } })
+        .then(r => r.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'quzeycampus_basvurular.csv';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+    }
+
+    // Auto-login from session
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = sessionStorage.getItem('qz_auth');
+      if (saved) {
+        authHeader = saved;
+        fetch('/api/submissions', { headers: { Authorization: authHeader } })
+          .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+          .then(data => {
+            document.getElementById('loginView').style.display = 'none';
+            document.getElementById('dashView').style.display = 'block';
+            renderData(data);
+          })
+          .catch(() => sessionStorage.removeItem('qz_auth'));
+      }
+    });
+  </script>
+</body>
+</html>
