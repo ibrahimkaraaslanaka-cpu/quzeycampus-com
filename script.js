@@ -152,21 +152,30 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('consultForm').addEventListener('submit', e => {
     e.preventDefault();
     const data = {
+      formType: 'consult',
       name: document.getElementById('fullName').value,
       phone: document.getElementById('phone').value,
       email: document.getElementById('email').value,
       city: document.getElementById('city').value,
-      education: [...document.querySelectorAll('input[name="education"]:checked')].map(c => c.value),
-      country: [...document.querySelectorAll('input[name="country"]:checked')].map(c => c.value),
+      education: [...document.querySelectorAll('input[name="education"]:checked')].map(c => c.value).join(', '),
+      country: [...document.querySelectorAll('input[name="country"]:checked')].map(c => c.value).join(', '),
       otherCountry: document.getElementById('otherCountry').value
     };
-    const submissions = JSON.parse(localStorage.getItem('quzey_submissions') || '[]');
-    submissions.push({ ...data, timestamp: new Date().toISOString() });
-    localStorage.setItem('quzey_submissions', JSON.stringify(submissions));
-    console.log('Form submitted:', data);
-    e.target.reset();
-    showToast();
+    fetch('/api/submit', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+      .then(r => r.json()).then(() => { e.target.reset(); showToast(); })
+      .catch(() => alert('Bir hata oluştu, lütfen tekrar deneyin.'));
   });
+
+  // Contact form
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const data = { formType: 'contact', name: fd.get('name') || '', email: fd.get('email') || '', message: fd.get('message') || '' };
+    fetch('/api/submit', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+      .then(r => r.json()).then(() => { e.target.reset(); showToast(); })
+      .catch(() => alert('Bir hata oluştu, lütfen tekrar deneyin.'));
+  });
+
 
   // Contact form
   document.getElementById('contactForm').addEventListener('submit', e => {
